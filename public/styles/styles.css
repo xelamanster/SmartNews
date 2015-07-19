@@ -1,0 +1,72 @@
+*{
+    padding:0;
+    margin:0;
+}
+
+body {
+    height: 100%;
+}
+
+html {
+    height: 100%;
+    background-color: #eaf0f2;
+}
+
+#wrapper {
+    min-height:100%;
+    position:relative;
+}
+
+#navcontainer ul {
+    width: 600px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: left;
+    display: table;
+}
+
+#navcontainer ul li {
+    width: 300px;
+    padding: 3px;
+    text-align: center;
+    border: 1px solid black;
+    background-color: #cccccc;
+    display: table-cell;
+}
+
+.table {
+    width: 600px;
+    display: table;
+}
+
+.cell {
+    width: 200px;
+    display: table-cell;
+}
+
+.active {
+    background-color: aliceblue!important;
+}
+
+.product {
+    width: 600px;
+    border: 1px solid black;
+}
+
+.review {
+    border: 1px solid black;
+}
+
+.ng-pristine.ng-invalid {
+
+}
+
+.ng-dirty.ng-invalid {
+    border: 1px solid red;
+}
+
+.ng-dirty.ng-valid {
+    border: 1px solid green;
+}
+
