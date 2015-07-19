@@ -5,16 +5,16 @@ package store.model;
  */
 public class Image {
     private final int imageId;
-    private final String full;
+    private final String path;
     private final String thumb;
 
-    public Image(int imageId, String full) {
-        this(imageId, full, null);
+    public Image(int imageId, String path) {
+        this(imageId, path, null);
     }
 
-    public Image(int imageId, String full, String thumb) {
+    public Image(int imageId, String path, String thumb) {
         this.imageId = imageId;
-        this.full = full;
+        this.path = path;
         this.thumb = thumb;
     }
 
@@ -22,8 +22,8 @@ public class Image {
         return imageId;
     }
 
-    public String getFull() {
-        return full;
+    public String getPath() {
+        return path;
     }
 
     public String getThumb() {

@@ -34,7 +34,7 @@
             soldOut: false,
             images: [
                 {
-                    full: '../images/1.jpg',
+                    path: '../images/1.jpg',
                     thumb: ''
                 }
             ],
@@ -60,7 +60,7 @@
             soldOut: false,
             images: [
                 {
-                    full: '../images/2.jpg',
+                    path: '../images/2.jpg',
                     thumb: ''
                 }
             ],
@@ -86,7 +86,7 @@
             soldOut: false,
             images: [
                 {
-                    full: '../images/3.jpg',
+                    path: '../images/3.jpg',
                     thumb: ''
                 }
             ],

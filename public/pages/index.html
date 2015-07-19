@@ -17,7 +17,7 @@
         <div class="product" ng-repeat="product in store.products">
             <div ng-hide="product.soldOut">
                 <product-header></product-header>
-                <img ng-src="{{product.images[0].full}}" />
+                <img ng-src="{{product.images[0].path}}" />
                 <product-panels></product-panels>
             </div>
         </div>
