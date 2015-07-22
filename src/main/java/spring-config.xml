@@ -3,4 +3,30 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+           <property name="driverClassName" value="org.postgresql.Driver"/>
+           <property name="url" value="jdbc:postgresql://localhost/smart_news" />
+           <property name="username" value="postgres" />
+           <property name="password" value="P@ssw0rd"/>
+       </bean>
+
+       <bean id="hibernate4AnnotatedSessionFactory"
+             class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+              <property name="dataSource" ref="dataSource" />
+              <property name="annotatedClasses">
+                     <list>
+                            <value>com.smartnews.model.Client</value>
+                     </list>
+              </property>
+              <property name="hibernateProperties">
+                     <props>
+                            <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL94Dialect</prop>
+                            <prop key="hibernate.current_session_context_class">thread</prop>
+                            <prop key="hibernate.show_sql">false</prop>
+                     </props>
+              </property>
+       </bean>
+
+       <bean id="clientDAO" class="com.smartnews.dao.ClientDaoImpl"/>
+
 </beans>
