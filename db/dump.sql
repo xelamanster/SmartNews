@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.4.4
 -- Dumped by pg_dump version 9.4.4
--- Started on 2015-07-23 23:45:45
+-- Started on 2015-07-23 23:53:25
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -15,16 +15,16 @@ SET client_min_messages = warning;
 
 --
 -- TOC entry 177 (class 3079 OID 11855)
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2032 (class 0 OID 0)
+-- TOC entry 2031 (class 0 OID 0)
 -- Dependencies: 177
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -32,13 +32,11 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
-SET default_tablespace = '';
-
 SET default_with_oids = false;
 
 --
 -- TOC entry 172 (class 1259 OID 16394)
--- Name: article; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: article; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE article (
@@ -49,11 +47,9 @@ CREATE TABLE article (
 );
 
 
-ALTER TABLE article OWNER TO postgres;
-
 --
 -- TOC entry 173 (class 1259 OID 16400)
--- Name: article_tag; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: article_tag; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE article_tag (
@@ -62,11 +58,9 @@ CREATE TABLE article_tag (
 );
 
 
-ALTER TABLE article_tag OWNER TO postgres;
-
 --
 -- TOC entry 174 (class 1259 OID 16403)
--- Name: client; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: client; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE client (
@@ -75,11 +69,9 @@ CREATE TABLE client (
 );
 
 
-ALTER TABLE client OWNER TO postgres;
-
 --
 -- TOC entry 175 (class 1259 OID 16409)
--- Name: folder; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: folder; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE folder (
@@ -90,11 +82,9 @@ CREATE TABLE folder (
 );
 
 
-ALTER TABLE folder OWNER TO postgres;
-
 --
 -- TOC entry 176 (class 1259 OID 16415)
--- Name: tag; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tag; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE tag (
@@ -103,11 +93,9 @@ CREATE TABLE tag (
 );
 
 
-ALTER TABLE tag OWNER TO postgres;
-
 --
 -- TOC entry 1900 (class 2606 OID 16422)
--- Name: article_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: article_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY article
@@ -116,7 +104,7 @@ ALTER TABLE ONLY article
 
 --
 -- TOC entry 1902 (class 2606 OID 16424)
--- Name: article_tag_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: article_tag_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY article_tag
@@ -125,7 +113,7 @@ ALTER TABLE ONLY article_tag
 
 --
 -- TOC entry 1906 (class 2606 OID 16426)
--- Name: folder_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: folder_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY folder
@@ -134,7 +122,7 @@ ALTER TABLE ONLY folder
 
 --
 -- TOC entry 1908 (class 2606 OID 16428)
--- Name: tag_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tag_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY tag
@@ -143,7 +131,7 @@ ALTER TABLE ONLY tag
 
 --
 -- TOC entry 1904 (class 2606 OID 16430)
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY client
@@ -152,7 +140,7 @@ ALTER TABLE ONLY client
 
 --
 -- TOC entry 1909 (class 2606 OID 16431)
--- Name: article_folderId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: article_folderId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY article
@@ -161,7 +149,7 @@ ALTER TABLE ONLY article
 
 --
 -- TOC entry 1910 (class 2606 OID 16436)
--- Name: article_tag_articleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: article_tag_articleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY article_tag
@@ -170,7 +158,7 @@ ALTER TABLE ONLY article_tag
 
 --
 -- TOC entry 1911 (class 2606 OID 16441)
--- Name: article_tag_tagId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: article_tag_tagId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY article_tag
@@ -179,7 +167,7 @@ ALTER TABLE ONLY article_tag
 
 --
 -- TOC entry 1912 (class 2606 OID 16446)
--- Name: folder_parentId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: folder_parentId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY folder
@@ -188,7 +176,7 @@ ALTER TABLE ONLY folder
 
 --
 -- TOC entry 1913 (class 2606 OID 16451)
--- Name: folder_parentId_fkey1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: folder_parentId_fkey1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY folder
@@ -197,7 +185,7 @@ ALTER TABLE ONLY folder
 
 --
 -- TOC entry 1914 (class 2606 OID 16456)
--- Name: folder_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: folder_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY folder
@@ -206,26 +194,14 @@ ALTER TABLE ONLY folder
 
 --
 -- TOC entry 1915 (class 2606 OID 16461)
--- Name: folder_userId_fkey1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: folder_userId_fkey1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY folder
     ADD CONSTRAINT "folder_userId_fkey1" FOREIGN KEY ("clientId") REFERENCES client(id);
 
 
---
--- TOC entry 2031 (class 0 OID 0)
--- Dependencies: 6
--- Name: public; Type: ACL; Schema: -; Owner: postgres
---
-
-REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
-GRANT ALL ON SCHEMA public TO PUBLIC;
-
-
--- Completed on 2015-07-23 23:45:47
+-- Completed on 2015-07-23 23:53:25
 
 --
 -- PostgreSQL database dump complete
