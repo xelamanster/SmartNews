@@ -4,12 +4,16 @@ import com.smartnews.model.Client;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Created by fein on 7/22/2015.
  */
+@Repository
 public class ClientDaoImpl implements ClientDao {
 
     @Autowired
@@ -30,6 +34,6 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     private Session getSession() {
-        return sessionFactory.getCurrentSession();
+        return sessionFactory.openSession();
     }
 }
