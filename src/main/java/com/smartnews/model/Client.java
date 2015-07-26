@@ -47,4 +47,17 @@ public class Client {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Client client = (Client) o;
+
+        if (id != client.id) return false;
+        if (name != null ? !name.equals(client.name) : client.name != null) return false;
+
+        return true;
+    }
 }

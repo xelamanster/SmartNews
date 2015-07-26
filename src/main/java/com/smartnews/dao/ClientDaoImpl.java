@@ -13,33 +13,42 @@ import java.util.List;
  * Created by fein on 7/22/2015.
  */
 @Repository
-public class ClientDaoImpl implements ClientDao {
-
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+public class ClientDaoImpl extends AbstractDao implements ClientDao {
 
     @Override
     public void save(Client client) {
-        Session session = getSession();
-        session.getTransaction().begin();
+        startOperation();
         session.save(client);
-        session.getTransaction().commit();
+        tx.commit();
+    }
+
+    @Override
+    public Client findById(long id) {
+        startOperation();
+        Client client = session.get(Client.class, id);
+        tx.commit();
+        return client;
+    }
+
+    @Override
+    public void update(Client client) {
+        startOperation();
+        session.update(client);
+        tx.commit();
     }
 
     @Override
     public List<Client> list() {
-        Session session = getSession();
-        session.getTransaction().begin();
+        startOperation();
         List<Client> result = session.getNamedQuery(Client.FIND_ALL).list();
-        session.getTransaction().commit();
+        tx.commit();
         return result;
     }
 
-    private Session getSession() {
-        return sessionFactory.getCurrentSession();
+    @Override
+    public void delete(Client client) {
+        startOperation();
+        session.delete(client);
+        tx.commit();
     }
 }
