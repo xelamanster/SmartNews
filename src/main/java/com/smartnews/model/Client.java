@@ -11,9 +11,16 @@ import javax.persistence.*;
 public class Client {
     public static final String FIND_ALL = "Client.findAll";
 
+    public Client() {
+    }
+
+    public Client(String name) {
+        this.name = name;
+    }
+
     @Id
-    @Column(name="id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_seq_gen")
+    @SequenceGenerator(name = "client_seq_gen", sequenceName = "client_seq", allocationSize=1)
     private long id;
     private String name;
 

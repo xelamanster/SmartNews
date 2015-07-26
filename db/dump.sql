@@ -63,8 +63,19 @@ CREATE TABLE article_tag (
 -- Name: client; Type: TABLE; Schema: public; Owner: -
 --
 
+CREATE SEQUENCE client_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+--
+-- Name: client; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
 CREATE TABLE client (
-    id bigint NOT NULL,
+    id bigint DEFAULT nextval('client_seq'::regclass) NOT NULL,
     name character varying
 );
 

@@ -24,15 +24,22 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public void save(Client client) {
-        throw new UnsupportedOperationException();
+        Session session = getSession();
+        session.getTransaction().begin();
+        session.save(client);
+        session.getTransaction().commit();
     }
 
     @Override
     public List<Client> list() {
-        return getSession().getNamedQuery(Client.FIND_ALL).list();
+        Session session = getSession();
+        session.getTransaction().begin();
+        List<Client> result = session.getNamedQuery(Client.FIND_ALL).list();
+        session.getTransaction().commit();
+        return result;
     }
 
     private Session getSession() {
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
 }
