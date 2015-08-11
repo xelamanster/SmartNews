@@ -1,7 +1,10 @@
 package com.smartnews.dao;
 
 import com.smartnews.model.Client;
+import com.smartnews.model.Folder;
 import org.junit.Test;
+
+import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -16,6 +19,7 @@ public class ClientDaoTest extends AbstractClientDaoTest {
     private static final String TEST_UPDATE_CLIENT = "testUpdateClient";
     private static final String TEST_UPDATE_CLIENT_MODIFIED = "testUpdateClient modified";
     private static final String TEST_DELETE_CLIENT = "testDeleteClient";
+    private static final String TEST_CLIENT_INSERT_WITH_FOLDERS =  "testInsertClientWithFolders";
 
     //insert-get
     @Test
@@ -56,4 +60,16 @@ public class ClientDaoTest extends AbstractClientDaoTest {
         assertNull("client wasn't deleted ", clientDao.findById(testClient.getId()));
     }
 
+    @Test
+    public void testInsertClientWithFolders() {
+        Client testClient = new Client(TEST_CLIENT_INSERT_WITH_FOLDERS);
+        Folder videoFolder = new Folder();
+        videoFolder.setName("video");
+        Folder pronFolder = new Folder();
+        pronFolder.setName("pron");
+        pronFolder.setParentFolder(videoFolder);
+        testClient.setFolders(Arrays.asList(videoFolder, pronFolder));
+
+        clientDao.save(testClient);
+    }
 }

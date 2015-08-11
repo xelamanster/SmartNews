@@ -41,7 +41,7 @@ SET default_with_oids = false;
 
 CREATE TABLE article (
     id bigint NOT NULL,
-    "folderId" bigint,
+    folder_fk bigint,
     url character varying(4000),
     description character varying(4000)
 );
@@ -53,8 +53,8 @@ CREATE TABLE article (
 --
 
 CREATE TABLE article_tag (
-    "articleId" bigint NOT NULL,
-    "tagId" bigint NOT NULL
+    article_fk bigint NOT NULL,
+    tag_fk bigint NOT NULL
 );
 
 
@@ -79,6 +79,12 @@ CREATE TABLE client (
     name character varying
 );
 
+CREATE SEQUENCE folder_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
 --
 -- TOC entry 175 (class 1259 OID 16409)
@@ -86,9 +92,9 @@ CREATE TABLE client (
 --
 
 CREATE TABLE folder (
-    id bigint NOT NULL,
-    "parentId" bigint,
-    "clientId" bigint,
+    id bigint DEFAULT nextval('folder_seq'::regclass) NOT NULL,
+    parent_fk bigint,
+    client_fk bigint,
     name character varying
 );
 
@@ -119,7 +125,7 @@ ALTER TABLE ONLY article
 --
 
 ALTER TABLE ONLY article_tag
-    ADD CONSTRAINT article_tag_pkey PRIMARY KEY ("articleId", "tagId");
+    ADD CONSTRAINT article_tag_pkey PRIMARY KEY (article_fk, tag_fk);
 
 
 --
@@ -155,7 +161,7 @@ ALTER TABLE ONLY client
 --
 
 ALTER TABLE ONLY article
-    ADD CONSTRAINT "article_folderId_fkey" FOREIGN KEY ("folderId") REFERENCES folder(id);
+    ADD CONSTRAINT "article_folderId_fkey" FOREIGN KEY (folder_fk) REFERENCES folder(id);
 
 
 --
@@ -164,7 +170,7 @@ ALTER TABLE ONLY article
 --
 
 ALTER TABLE ONLY article_tag
-    ADD CONSTRAINT "article_tag_articleId_fkey" FOREIGN KEY ("articleId") REFERENCES article(id);
+    ADD CONSTRAINT "article_tag_articleId_fkey" FOREIGN KEY (article_fk) REFERENCES article(id);
 
 
 --
@@ -173,7 +179,7 @@ ALTER TABLE ONLY article_tag
 --
 
 ALTER TABLE ONLY article_tag
-    ADD CONSTRAINT "article_tag_tagId_fkey" FOREIGN KEY ("tagId") REFERENCES tag(id);
+    ADD CONSTRAINT "article_tag_tagId_fkey" FOREIGN KEY (tag_fk) REFERENCES tag(id);
 
 
 --
@@ -182,16 +188,7 @@ ALTER TABLE ONLY article_tag
 --
 
 ALTER TABLE ONLY folder
-    ADD CONSTRAINT "folder_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES folder(id);
-
-
---
--- TOC entry 1913 (class 2606 OID 16451)
--- Name: folder_parentId_fkey1; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY folder
-    ADD CONSTRAINT "folder_parentId_fkey1" FOREIGN KEY ("parentId") REFERENCES folder(id);
+    ADD CONSTRAINT "folder_parentId_fkey" FOREIGN KEY (parent_fk) REFERENCES folder(id);
 
 
 --
@@ -200,16 +197,7 @@ ALTER TABLE ONLY folder
 --
 
 ALTER TABLE ONLY folder
-    ADD CONSTRAINT "folder_userId_fkey" FOREIGN KEY ("clientId") REFERENCES client(id);
-
-
---
--- TOC entry 1915 (class 2606 OID 16461)
--- Name: folder_userId_fkey1; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY folder
-    ADD CONSTRAINT "folder_userId_fkey1" FOREIGN KEY ("clientId") REFERENCES client(id);
+    ADD CONSTRAINT "folder_userId_fkey" FOREIGN KEY (client_fk) REFERENCES client(id);
 
 
 -- Completed on 2015-07-23 23:53:25

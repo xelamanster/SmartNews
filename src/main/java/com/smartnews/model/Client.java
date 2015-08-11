@@ -1,6 +1,7 @@
 package com.smartnews.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by fein on 7/22/2015.
@@ -23,6 +24,9 @@ public class Client {
     @SequenceGenerator(name = "client_seq_gen", sequenceName = "client_seq", allocationSize=1)
     private long id;
     private String name;
+    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @JoinColumn(name="client_fk", referencedColumnName="id")
+    private List<Folder> folders;
 
     public long getId() {
         return id;
@@ -38,6 +42,14 @@ public class Client {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Folder> getFolders() {
+        return folders;
+    }
+
+    public void setFolders(List<Folder> folders) {
+        this.folders = folders;
     }
 
     @Override
