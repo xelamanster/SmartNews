@@ -1,6 +1,7 @@
 package com.smartnews.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name="client")
 @NamedQueries({@NamedQuery(name = Client.FIND_ALL, query = "select c from Client c")})
-public class Client {
+public class Client implements Serializable {
     public static final String FIND_ALL = "Client.findAll";
 
     public Client() {
@@ -24,7 +25,8 @@ public class Client {
     @SequenceGenerator(name = "client_seq_gen", sequenceName = "client_seq", allocationSize=1)
     private long id;
     private String name;
-    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    //can't use FetchType.LAZY because of serialization
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="client_fk", referencedColumnName="id")
     private List<Folder> folders;
 
