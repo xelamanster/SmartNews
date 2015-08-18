@@ -1,6 +1,7 @@
 package com.smartnews.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by fein on 8/11/2015.
@@ -18,6 +19,9 @@ public class Folder {
     @ManyToOne
     @JoinColumn(name = "parent_fk")
     private Folder parentFolder;
+    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @JoinColumn(name="folder_fk", referencedColumnName="id")
+    private List<Article> articles;
     private String name;
 
     public long getId() {
