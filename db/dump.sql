@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.4.4
 -- Dumped by pg_dump version 9.4.4
--- Started on 2015-07-23 23:53:25
+-- Started on 2015-08-18 09:16:21
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -14,7 +14,7 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- TOC entry 177 (class 3079 OID 11855)
+-- TOC entry 181 (class 3079 OID 11855)
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -22,8 +22,8 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2031 (class 0 OID 0)
--- Dependencies: 177
+-- TOC entry 2039 (class 0 OID 0)
+-- Dependencies: 181
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
 --
 
@@ -35,7 +35,7 @@ SET search_path = public, pg_catalog;
 SET default_with_oids = false;
 
 --
--- TOC entry 172 (class 1259 OID 16394)
+-- TOC entry 172 (class 1259 OID 16531)
 -- Name: article; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -48,7 +48,20 @@ CREATE TABLE article (
 
 
 --
--- TOC entry 173 (class 1259 OID 16400)
+-- TOC entry 179 (class 1259 OID 16599)
+-- Name: article_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE article_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- TOC entry 173 (class 1259 OID 16537)
 -- Name: article_tag; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -59,8 +72,8 @@ CREATE TABLE article_tag (
 
 
 --
--- TOC entry 174 (class 1259 OID 16403)
--- Name: client; Type: TABLE; Schema: public; Owner: -
+-- TOC entry 174 (class 1259 OID 16540)
+-- Name: client_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE client_seq
@@ -70,14 +83,22 @@ CREATE SEQUENCE client_seq
     NO MAXVALUE
     CACHE 1;
 
+
 --
--- Name: client; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- TOC entry 175 (class 1259 OID 16542)
+-- Name: client; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE client (
     id bigint DEFAULT nextval('client_seq'::regclass) NOT NULL,
     name character varying
 );
+
+
+--
+-- TOC entry 176 (class 1259 OID 16549)
+-- Name: folder_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
 
 CREATE SEQUENCE folder_seq
     START WITH 1
@@ -86,8 +107,9 @@ CREATE SEQUENCE folder_seq
     NO MAXVALUE
     CACHE 1;
 
+
 --
--- TOC entry 175 (class 1259 OID 16409)
+-- TOC entry 177 (class 1259 OID 16551)
 -- Name: folder; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -100,7 +122,7 @@ CREATE TABLE folder (
 
 
 --
--- TOC entry 176 (class 1259 OID 16415)
+-- TOC entry 178 (class 1259 OID 16558)
 -- Name: tag; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -111,7 +133,20 @@ CREATE TABLE tag (
 
 
 --
--- TOC entry 1900 (class 2606 OID 16422)
+-- TOC entry 180 (class 1259 OID 16601)
+-- Name: tag_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tag_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- TOC entry 1910 (class 2606 OID 16565)
 -- Name: article_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -120,7 +155,7 @@ ALTER TABLE ONLY article
 
 
 --
--- TOC entry 1902 (class 2606 OID 16424)
+-- TOC entry 1912 (class 2606 OID 16567)
 -- Name: article_tag_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -129,7 +164,7 @@ ALTER TABLE ONLY article_tag
 
 
 --
--- TOC entry 1906 (class 2606 OID 16426)
+-- TOC entry 1916 (class 2606 OID 16569)
 -- Name: folder_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -138,7 +173,7 @@ ALTER TABLE ONLY folder
 
 
 --
--- TOC entry 1908 (class 2606 OID 16428)
+-- TOC entry 1918 (class 2606 OID 16571)
 -- Name: tag_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -147,7 +182,7 @@ ALTER TABLE ONLY tag
 
 
 --
--- TOC entry 1904 (class 2606 OID 16430)
+-- TOC entry 1914 (class 2606 OID 16573)
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -156,7 +191,7 @@ ALTER TABLE ONLY client
 
 
 --
--- TOC entry 1909 (class 2606 OID 16431)
+-- TOC entry 1919 (class 2606 OID 16574)
 -- Name: article_folderId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -165,7 +200,7 @@ ALTER TABLE ONLY article
 
 
 --
--- TOC entry 1910 (class 2606 OID 16436)
+-- TOC entry 1920 (class 2606 OID 16579)
 -- Name: article_tag_articleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -174,7 +209,7 @@ ALTER TABLE ONLY article_tag
 
 
 --
--- TOC entry 1911 (class 2606 OID 16441)
+-- TOC entry 1921 (class 2606 OID 16584)
 -- Name: article_tag_tagId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -183,7 +218,7 @@ ALTER TABLE ONLY article_tag
 
 
 --
--- TOC entry 1912 (class 2606 OID 16446)
+-- TOC entry 1922 (class 2606 OID 16589)
 -- Name: folder_parentId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -192,7 +227,7 @@ ALTER TABLE ONLY folder
 
 
 --
--- TOC entry 1914 (class 2606 OID 16456)
+-- TOC entry 1923 (class 2606 OID 16594)
 -- Name: folder_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -200,7 +235,7 @@ ALTER TABLE ONLY folder
     ADD CONSTRAINT "folder_userId_fkey" FOREIGN KEY (client_fk) REFERENCES client(id);
 
 
--- Completed on 2015-07-23 23:53:25
+-- Completed on 2015-08-18 09:16:22
 
 --
 -- PostgreSQL database dump complete
