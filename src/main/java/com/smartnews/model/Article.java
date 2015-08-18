@@ -19,7 +19,7 @@ public class Article {
 
     @ManyToOne
     @JoinColumn(name = "folder_fk")
-    private Folder parentFolder;
+    private Folder folder;
 
     @JoinTable(name = "article_tag",
             joinColumns = {
@@ -43,12 +43,12 @@ public class Article {
         this.id = id;
     }
 
-    public Folder getParentFolder() {
-        return parentFolder;
+    public Folder getFolder() {
+        return folder;
     }
 
-    public void setParentFolder(Folder parentFolder) {
-        this.parentFolder = parentFolder;
+    public void setFolder(Folder folder) {
+        this.folder = folder;
     }
 
     public List<Tag> getTags() {
