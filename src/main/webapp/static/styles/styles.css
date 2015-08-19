@@ -1,0 +1,22 @@
+*{
+    padding:0;
+    margin:0;
+}
+
+body {
+    height: 100%;
+}
+
+html {
+    height: 100%;
+    background-color: #eaf0f2;
+}
+
+#wrapper {
+    min-height:100%;
+    position:relative;
+}
+
+.indented {
+    text-indent: 20px;
+}

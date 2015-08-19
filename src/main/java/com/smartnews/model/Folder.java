@@ -19,7 +19,7 @@ public class Folder {
     @ManyToOne
     @JoinColumn(name = "parent_fk")
     private Folder parentFolder;
-    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
     @JoinColumn(name="folder_fk", referencedColumnName="id")
     private List<Article> articles;
     private String name;

@@ -27,6 +27,8 @@
             <list>
                 <value>com.smartnews.model.Client</value>
                 <value>com.smartnews.model.Folder</value>
+                <value>com.smartnews.model.Article</value>
+                <value>com.smartnews.model.Tag</value>
             </list>
         </property>
         <property name="hibernateProperties">
