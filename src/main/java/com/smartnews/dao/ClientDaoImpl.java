@@ -17,38 +17,28 @@ public class ClientDaoImpl extends AbstractDao implements ClientDao {
 
     @Override
     public void save(Client client) {
-        startOperation();
-        session.save(client);
-        tx.commit();
+        getSession().save(client);
     }
 
     @Override
     public Client findById(long id) {
-        startOperation();
-        Client client = session.get(Client.class, id);
-        tx.commit();
+        Client client = (Client) getSession().get(Client.class, id);
         return client;
     }
 
     @Override
     public void update(Client client) {
-        startOperation();
-        session.update(client);
-        tx.commit();
+        getSession().update(client);
     }
 
     @Override
     public List<Client> list() {
-        startOperation();
-        List<Client> result = session.getNamedQuery(Client.FIND_ALL).list();
-        tx.commit();
+        List<Client> result = getSession().getNamedQuery(Client.FIND_ALL).list();
         return result;
     }
 
     @Override
     public void delete(Client client) {
-        startOperation();
-        session.delete(client);
-        tx.commit();
+        getSession().delete(client);
     }
 }

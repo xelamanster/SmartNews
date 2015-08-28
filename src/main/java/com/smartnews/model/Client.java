@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name="client")
 @NamedQueries({@NamedQuery(name = Client.FIND_ALL, query = "select c from Client c")})
-public class Client implements Serializable {
+public class Client implements ModelEntity {
     public static final String FIND_ALL = "Client.findAll";
 
     public Client() {
@@ -26,7 +26,7 @@ public class Client implements Serializable {
     private long id;
     private String name;
     //can't use FetchType.LAZY because of serialization
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="client_fk", referencedColumnName="id")
     private List<Folder> folders;
 

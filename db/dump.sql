@@ -41,6 +41,7 @@ SET default_with_oids = false;
 
 CREATE TABLE article (
     id bigint NOT NULL,
+    name character varying(4000),
     folder_fk bigint,
     url character varying(4000),
     description character varying(4000)

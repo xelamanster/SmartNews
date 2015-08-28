@@ -1,6 +1,6 @@
 package com.smartnews.service;
 
-import com.smartnews.model.Client;
+import com.smartnews.rest.dto.ClientDto;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import java.util.List;
  * Created by fein on 8/13/2015.
  */
 public interface ClientService {
-    Client findClient(long clientId);
+    ClientDto findClient(long clientId);
 
-    List<Client> findAllClients();
+    List<ClientDto> findAllClients();
 }

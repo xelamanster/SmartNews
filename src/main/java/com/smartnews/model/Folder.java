@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Table(name="folder")
 @NamedQueries({@NamedQuery(name = Folder.FIND_ALL, query = "select f from Folder f")})
-public class Folder {
+public class Folder implements ModelEntity {
     public static final String FIND_ALL = "Folder.findAll";
 
     @Id
@@ -19,7 +19,7 @@ public class Folder {
     @ManyToOne
     @JoinColumn(name = "parent_fk")
     private Folder parentFolder;
-    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="folder_fk", referencedColumnName="id")
     private List<Article> articles;
     private String name;

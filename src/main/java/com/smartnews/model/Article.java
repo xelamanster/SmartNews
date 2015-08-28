@@ -9,18 +9,20 @@ import java.util.List;
 @Entity
 @Table(name="article")
 @NamedQueries({@NamedQuery(name = Article.FIND_ALL, query = "select f from Article f")})
-public class Article {
+public class Article implements ModelEntity {
     public static final String FIND_ALL = "Article.findAll";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "article_seq_gen")
     @SequenceGenerator(name = "article_seq_gen", sequenceName = "article_seq", allocationSize=1)
     private long id;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "folder_fk")
     private Folder folder;
 
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "article_tag",
             joinColumns = {
                     @JoinColumn(name = "article_fk", referencedColumnName = "id")
@@ -29,7 +31,6 @@ public class Article {
                     @JoinColumn(name = "tag_fk", referencedColumnName = "id")
             }
     )
-    @ManyToMany
     private List<Tag> tags;
 
     private String url;
@@ -73,5 +74,13 @@ public class Article {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

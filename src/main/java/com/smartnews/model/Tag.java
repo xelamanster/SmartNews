@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Table(name="tag")
 @NamedQueries({@NamedQuery(name = Tag.FIND_ALL, query = "select f from Tag f")})
-public class Tag {
+public class Tag implements ModelEntity {
     public static final String FIND_ALL = "Tag.findAll";
 
     @Id

@@ -1,10 +1,13 @@
 package com.smartnews.dao;
 
+import com.smartnews.model.Article;
 import com.smartnews.model.Client;
 import com.smartnews.model.Folder;
+import com.smartnews.model.Tag;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -61,7 +64,7 @@ public class ClientDaoTest extends AbstractClientDaoTest {
     }
 
     @Test
-    public void testInsertClientWithFolders() {
+    public void testCascadeInsertClient() {
         Client testClient = new Client(TEST_CLIENT_INSERT_WITH_FOLDERS);
         Folder videoFolder = new Folder();
         videoFolder.setName("video");
@@ -69,6 +72,16 @@ public class ClientDaoTest extends AbstractClientDaoTest {
         pronFolder.setName("pron");
         pronFolder.setParentFolder(videoFolder);
         testClient.setFolders(Arrays.asList(videoFolder, pronFolder));
+
+
+        Tag tag = new Tag();
+        tag.setName("hot");
+
+        Article article = new Article();
+        article.setName("Hot pussies");
+        article.setTags(Collections.singletonList(tag));
+
+        pronFolder.setArticles(Collections.singletonList(article));
 
         clientDao.save(testClient);
     }

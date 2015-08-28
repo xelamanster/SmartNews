@@ -2,10 +2,15 @@ package com.smartnews.service;
 
 import com.smartnews.dao.ClientDao;
 import com.smartnews.model.Client;
+import com.smartnews.rest.dto.ClientDto;
+import com.smartnews.rest.mappers.ClientMapper;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,16 +19,27 @@ import java.util.List;
 @Service
 public class ClientServiceImpl implements ClientService {
 
+    private static final Logger LOG = LogManager.getLogger(ClientServiceImpl.class.getName());
+
     @Autowired
     private ClientDao clientDao;
+    @Autowired
+    private ClientMapper clientMapper;
 
     @Override
-    public Client findClient(long clientId) {
-        return clientDao.findById(clientId);
+    @Transactional
+    public ClientDto findClient(long clientId) {
+        Client client = clientDao.findById(clientId);
+        return clientMapper.mapToDto(client);
     }
 
     @Override
-    public List<Client> findAllClients() {
-        return clientDao.list();
+    @Transactional
+    public List<ClientDto> findAllClients() {
+        LOG.info("findAllClients start");
+        List<ClientDto> clientDtos = new ArrayList<ClientDto>();
+        clientDtos.addAll(clientMapper.mapToDtos(clientDao.list()));
+        LOG.info("findAllClients end");
+        return clientDtos;
     }
 }
