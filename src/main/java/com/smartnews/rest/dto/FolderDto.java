@@ -7,8 +7,8 @@ import java.util.List;
  */
 public class FolderDto extends NamedDto {
 
-    private FolderDto parentFolder;
-    private List<ArticleDto> articles;
+    private final FolderDto parentFolder;
+    private final List<ArticleDto> articles;
 
     public FolderDto(long id, String name, FolderDto parentFolder, List<ArticleDto> articles) {
         super(id, name);
@@ -20,15 +20,7 @@ public class FolderDto extends NamedDto {
         return parentFolder;
     }
 
-    public void setParentFolder(FolderDto parentFolder) {
-        this.parentFolder = parentFolder;
-    }
-
     public List<ArticleDto> getArticles() {
         return articles;
-    }
-
-    public void setArticles(List<ArticleDto> articles) {
-        this.articles = articles;
     }
 }

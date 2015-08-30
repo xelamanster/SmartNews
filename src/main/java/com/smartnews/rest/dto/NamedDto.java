@@ -4,8 +4,8 @@ package com.smartnews.rest.dto;
  * Created by fein on 8/27/2015.
  */
 public abstract class NamedDto {
-    private long id;
-    private String name;
+    private final long id;
+    private final String name;
 
     public NamedDto(long id, String name) {
         this.id = id;
@@ -16,16 +16,8 @@ public abstract class NamedDto {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 }
