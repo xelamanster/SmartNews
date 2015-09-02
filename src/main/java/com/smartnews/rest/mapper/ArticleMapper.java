@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by fein on 8/27/2015.
@@ -20,21 +21,20 @@ public class ArticleMapper implements RestMapper<ArticleDto, Article> {
 
     @Override
     public ArticleDto mapToDto(Article article) {
-        List<TagDto> tagDtos = new ArrayList<TagDto>();
-        tagDtos.addAll(tagMapper.mapToDtos(article.getTags()));
-        ArticleDto articleDto = ArticleDto.newBuilder()
-                .setId(article.getId()).setName(article.getName()).setUrl(article.getUrl())
-                .setDescription(article.getDescription()).setTags(tagDtos).build();
-        return articleDto;
+        return ArticleDto.newBuilder()
+                .setId(article.getId())
+                .setName(article.getName())
+                .setUrl(article.getUrl())
+                .setDescription(article.getDescription())
+                .setTags(tagMapper.mapToDtos(article.getTags()))
+                .build();
     }
 
     @Override
     public List<ArticleDto> mapToDtos(List<Article> articles) {
-        List<ArticleDto> articleDtos = new ArrayList<ArticleDto>();
-        for (Article article : articles) {
-            articleDtos.add(mapToDto(article));
-        }
-        return articleDtos;
+        return articles.stream()
+                .map(this::mapToDto)
+                .collect(Collectors.toList());
     }
 
     @Override
