@@ -1,9 +1,6 @@
-package com.smartnews.rest.mappers;
+package com.smartnews.rest.mapper;
 
-import com.smartnews.model.Article;
 import com.smartnews.model.Client;
-import com.smartnews.model.Folder;
-import com.smartnews.rest.dto.ArticleDto;
 import com.smartnews.rest.dto.ClientDto;
 import com.smartnews.rest.dto.FolderDto;
 import org.apache.log4j.LogManager;

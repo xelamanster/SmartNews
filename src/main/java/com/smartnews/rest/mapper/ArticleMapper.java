@@ -1,4 +1,4 @@
-package com.smartnews.rest.mappers;
+package com.smartnews.rest.mapper;
 
 import com.smartnews.model.Article;
 import com.smartnews.rest.dto.ArticleDto;

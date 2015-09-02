@@ -3,7 +3,7 @@ package com.smartnews.service;
 import com.smartnews.dao.ClientDao;
 import com.smartnews.model.Client;
 import com.smartnews.rest.dto.ClientDto;
-import com.smartnews.rest.mappers.ClientMapper;
+import com.smartnews.rest.mapper.ClientMapper;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
