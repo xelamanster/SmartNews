@@ -12,36 +12,36 @@ import java.util.List;
 @Component
 public class ArticleMapper implements RestMapper<ArticleDto, Article> {
 
-  @Autowired
-  private TagMapper tagMapper;
+    @Autowired
+    private TagMapper tagMapper;
 
-  @Override
-  public ArticleDto mapToDto(Article article) {
-    List<TagDto> tagDtos = Lists.newArrayList(tagMapper.mapToDtos(article.getTags()));
+    @Override
+    public ArticleDto mapToDto(Article article) {
+        List<TagDto> tagDtos = Lists.newArrayList(tagMapper.mapToDtos(article.getTags()));
 
-    return ArticleDto.newBuilder(article.getId(), article.getName())
-      .url(article.getUrl())
-      .description(article.getDescription())
-      .tags(tagDtos)
-      .build();
-  }
-
-  @Override
-  public List<ArticleDto> mapToDtos(List<Article> articles) {
-    List<ArticleDto> articleDtos = Lists.newArrayList();
-    for (Article article : articles) {
-      articleDtos.add(mapToDto(article));
+        return ArticleDto.newBuilder(article.getId(), article.getName())
+                .url(article.getUrl())
+                .description(article.getDescription())
+                .tags(tagDtos)
+                .build();
     }
-    return articleDtos;
-  }
 
-  @Override
-  public Article mapToEntity(ArticleDto dto) {
-    return null;
-  }
+    @Override
+    public List<ArticleDto> mapToDtos(List<Article> articles) {
+        List<ArticleDto> articleDtos = Lists.newArrayList();
+        for (Article article : articles) {
+            articleDtos.add(mapToDto(article));
+        }
+        return articleDtos;
+    }
 
-  @Override
-  public List<Article> mapToEntities(List<ArticleDto> dtos) {
-    return null;
-  }
+    @Override
+    public Article mapToEntity(ArticleDto dto) {
+        return null;
+    }
+
+    @Override
+    public List<Article> mapToEntities(List<ArticleDto> dtos) {
+        return null;
+    }
 }

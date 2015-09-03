@@ -5,12 +5,8 @@ import com.smartnews.model.Tag;
 import com.smartnews.rest.dto.TagDto;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by fein on 8/29/2015.
- */
 @Component
 public class TagMapper implements RestMapper<TagDto, Tag> {
     @Override
