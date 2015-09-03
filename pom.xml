@@ -65,6 +65,12 @@
       <artifactId>log4j</artifactId>
       <version>${log4j.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+    </dependency>
+
   </dependencies>
 
   <properties>
@@ -81,6 +87,8 @@
     <spring-webmvc.version>4.1.6.RELEASE</spring-webmvc.version>
     <spring-web.version>4.1.6.RELEASE</spring-web.version>
     <jetty-maven-plugin.version>9.2.8.v20150217</jetty-maven-plugin.version>
+    <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
+    <guava.version>18.0</guava.version>
   </properties>
 
   <build>
@@ -89,6 +97,15 @@
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
         <version>${jetty-maven-plugin.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
       </plugin>
     </plugins>
   </build>
