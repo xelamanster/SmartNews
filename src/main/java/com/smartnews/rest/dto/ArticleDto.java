@@ -1,7 +1,5 @@
 package com.smartnews.rest.dto;
 
-import com.smartnews.model.Tag;
-
 import java.util.List;
 
 /**
@@ -12,11 +10,11 @@ public class ArticleDto extends NamedDto {
     private final String url;
     private final String description;
 
-    public ArticleDto(long id, String name, List<TagDto> tags, String url, String description) {
-        super(id, name);
-        this.tags = tags;
-        this.url = url;
-        this.description = description;
+    private ArticleDto(Builder builder) {
+        super(builder.id, builder.name);
+        this.tags = builder.tags;
+        this.url = builder.url;
+        this.description = builder.description;
     }
 
     public List<TagDto> getTags() {
@@ -31,47 +29,39 @@ public class ArticleDto extends NamedDto {
         return description;
     }
 
-    public static Builder newBuilder() {
-        return new ArticleDto.Builder();
+    public static Builder newBuilder(long id, String name) {
+        return new ArticleDto.Builder(id, name);
     }
 
     public static class Builder {
-        private long nestedId;
-        private String nestedName;
-        private List<TagDto> nestedTags;
-        private String nestedUrl;
-        private String nestedDescription;
+        private final long id;
+        private final String name;
+        private List<TagDto> tags;
+        private String url;
+        private String description;
 
-        private Builder() {
+        private Builder(long id, String name) {
+            this.id = id;
+            this.name = name;
         }
 
-        public Builder setId(long id) {
-            this.nestedId = id;
+        public Builder tags(List<TagDto> tags) {
+            this.tags = tags;
             return this;
         }
 
-        public Builder setName(String name) {
-            this.nestedName = name;
+        public Builder url(String url) {
+            this.url = url;
             return this;
         }
 
-        public Builder setTags(List<TagDto> tags) {
-            this.nestedTags = tags;
-            return this;
-        }
-
-        public Builder setUrl(String url) {
-            this.nestedUrl = url;
-            return this;
-        }
-
-        public Builder setDescription(String description) {
-            this.nestedDescription = description;
+        public Builder description(String description) {
+            this.description = description;
             return this;
         }
 
         public ArticleDto build() {
-            return new ArticleDto(nestedId, nestedName, nestedTags, nestedUrl, nestedDescription);
+            return new ArticleDto(this);
         }
     }
 }
