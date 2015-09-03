@@ -1,15 +1,18 @@
 package com.smartnews.rest.mapper;
 
-import com.google.common.collect.Lists;
 import com.smartnews.model.Article;
 import com.smartnews.rest.dto.ArticleDto;
 import com.smartnews.rest.dto.TagDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Created by fein on 8/27/2015.
+ */
 @Component
 public class ArticleMapper implements RestMapper<ArticleDto, Article> {
 
@@ -18,10 +21,12 @@ public class ArticleMapper implements RestMapper<ArticleDto, Article> {
 
     @Override
     public ArticleDto mapToDto(Article article) {
-        return ArticleDto.newBuilder(article.getId(), article.getName())
-                .url(article.getUrl())
-                .description(article.getDescription())
-                .tags(tagMapper.mapToDtos(article.getTags()))
+        return ArticleDto.newBuilder()
+                .setId(article.getId())
+                .setName(article.getName())
+                .setUrl(article.getUrl())
+                .setDescription(article.getDescription())
+                .setTags(tagMapper.mapToDtos(article.getTags()))
                 .build();
     }
 
